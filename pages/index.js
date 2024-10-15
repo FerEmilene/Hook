@@ -3,6 +3,8 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 
+import React, { useEffect, useState } from 'react';
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -15,6 +17,20 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  
+  const [count, setCount] = useState(0);
+  
+  const handleScroll = () => {
+    setCount(count + scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  })
+
   return (
     <>
       <Head>
@@ -40,6 +56,24 @@ export default function Home() {
               Get started by editing <code>pages/index.js</code>.
             </li>
             <li>Save and see your changes instantly.</li>
+            <li>
+              Get started by editing <code>pages/index.js</code>.
+            </li>
+            <li>Save and see your changes instantly.</li>
+            <li>
+              Get started by editing <code>pages/index.js</code>.
+            </li>
+            <li>Save and see your changes instantly.</li>
+            <li>
+              Get started by editing <code>pages/index.js</code>.
+            </li>
+            <li>Save and see your changes instantly.</li>
+
+            <li><p>You clicked {count} times</p>
+          <button onClick={() => setCount(count + 1)}>
+            Click me
+          </button></li>
+
           </ol>
 
           <div className={styles.ctas}>
